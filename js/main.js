@@ -84,3 +84,12 @@ function expectArrVal(x, y, arr, exp) {
         return false;
     }
 }
+
+// Check if a value doesn't exists in a 2D array at specified x and y coordinates/indices. 
+function expectNotArrVal(x, y, arr, exp) {
+    if (x >= 0 && x < arr.length && y >= 0 && y < arr[x].length && arr[x][y] !== exp) {
+        return true;
+    } else {
+        return false;
+    }
+}
