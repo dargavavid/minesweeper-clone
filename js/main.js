@@ -181,3 +181,7 @@ function getClickedBlockCoords(e, grid) {
     const y = Math.floor(clickedX / blockWidth), x = Math.floor(clickedY / blockHeight);
     return { x, y };
 }
+
+function notifyUser(msg) {
+    window.alert(msg);
+}
