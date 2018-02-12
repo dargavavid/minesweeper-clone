@@ -67,3 +67,11 @@ function labelNonBombCells(deepGrid) {
     }
     return labeledGrid;
 }
+
+function initGrid(rows, columns, nBombs) {
+    const a = makeFlatGrid(rows, columns);
+    const b = setBombsRandomly(a, nBombs);
+    const c = convertFlatGridToDeep(b);
+    const d = labelNonBombCells(c);
+    return d;
+}
