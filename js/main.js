@@ -193,3 +193,14 @@ function handleBlockClick(e) {
     clearCanvas(app.canvas, app.ctx);
     renderGrid(app.iGrid);
 }
+
+function handleGenerateButton() {
+    const size = parseInt(app.sizeInput.value);
+    if (!isNaN(size) && size >= 3 && size <= 20) {
+        app.settings.rows = size;
+        app.settings.columns = size;
+        restartGame();
+    } else {
+        notifyUser('Invalid grid size, must be between 3 and 20');
+    }
+}
