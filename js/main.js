@@ -243,3 +243,5 @@ const app = {
     ctx: null,
     sizeInput: null,
 };
+
+initGame();
