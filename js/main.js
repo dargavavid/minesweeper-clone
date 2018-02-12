@@ -24,3 +24,17 @@ function setBombsRandomly(flatGrid, nBombs) {
     const gridWithBombs = flatGrid.map((x, i) => i < nBombs ? -1 : x);
     return shuffle(gridWithBombs);
 }
+
+// Partition flat grid into n number of subarrays, where n is the square number of the input grid length.
+function convertFlatGridToDeep(flatGrid) {
+    const n = Math.sqrt(flatGrid.length);
+    if (n % 1 === 0) {
+        const deepGrid = [];
+        for (let i = 0; i < flatGrid.length; i += n) {
+            deepGrid.push(flatGrid.slice(i, i + n));
+        }
+        return deepGrid;
+    } else {
+        throw new Error("Flatgrid length has to be a square number.");
+    }
+}
