@@ -144,3 +144,31 @@ function calcBombs(r, c) {
 function clearCanvas(canvas, ctx) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
+
+function renderGrid(grid) {
+    const r = grid.length, c = grid[0].length;
+    const cWidth = app.canvas.width, cHeight = app.canvas.height;
+    const blockWidth = cWidth / c, blockHeight = cHeight / r;
+    let currentX = 0, currentY = 0, el;
+    for (let i = 0; i < r; i++) {
+        for (let j = 0; j < c; j++) {
+            app.ctx.strokeStyle = "black";
+            app.ctx.strokeRect(currentX, currentY, blockWidth, blockHeight);
+            el = grid[i][j];
+            if (el !== '?') {
+                app.ctx.strokeStyle = "antiquewhite";
+                app.ctx.strokeRect(currentX, currentY, blockWidth, blockHeight);
+                app.ctx.fillStyle = 'black';
+                app.ctx.fillRect(currentX, currentY, blockWidth, blockHeight);
+                app.ctx.fillStyle = 'antiquewhite';
+                app.ctx.font = "20px Georgia";
+                // app.ctx.fillText(el, currentX - (blockWidth / 2 + 10), currentY + (blockHeight / 2 + 10));
+                // app.ctx.fillText(el, currentX - blockWidth / 2 - 5, currentY + blockHeight / 2 + 7.5);
+                app.ctx.fillText(el, currentX + blockWidth / 2 - 5, currentY + blockHeight / 2 + 7.5);
+            }
+            currentX += blockWidth;
+        }
+        currentX = 0;
+        currentY += blockHeight;
+    }
+}
