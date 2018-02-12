@@ -222,3 +222,11 @@ function initGame() {
     clearCanvas(app.canvas, app.ctx);
     renderGrid(app.iGrid);
 }
+
+function restartGame() {
+    app.settings.bombs = calcBombs(app.settings.rows, app.settings.columns);
+    app.fGrid = initGrid(app.settings.rows, app.settings.columns, app.settings.bombs);
+    app.iGrid = new Array(app.settings.rows).fill(0).map(row => new Array(app.settings.columns).fill('?'));
+    clearCanvas(app.canvas, app.ctx);
+    renderGrid(app.iGrid);
+}
