@@ -98,3 +98,39 @@ function expectNotArrVal(x, y, arr, exp) {
 function checkDuplicateCoord(el, arr) {
     return JSON.stringify(arr).includes(JSON.stringify(el));
 }
+
+function reveal(x, y, incompleteGrid, fullGrid) {
+    let el = fullGrid[x][y];
+    if (el === incompleteGrid[x][y] || x < 0 || y < 0) {
+        return incompleteGrid;
+    }
+    if (el === 0) {
+        const checked = [];
+        const q = [{ x: x, y: y }];
+        let cp;
+        while (q.length > 0) {
+            cp = q[0];
+            incompleteGrid[cp.x][cp.y] = fullGrid[cp.x][cp.y];
+
+            el = fullGrid[cp.x][cp.y];
+            if (el === 0) {
+                if (expectNotArrVal(cp.x - 1, cp.y, fullGrid, -1) && !checkDuplicateCoord({ x: cp.x - 1, y: cp.y }, checked)) {
+                    q.push({ x: cp.x - 1, y: cp.y });
+                }
+                if (expectNotArrVal(cp.x + 1, cp.y, fullGrid, -1) && !checkDuplicateCoord({ x: cp.x + 1, y: cp.y }, checked)) {
+                    q.push({ x: cp.x + 1, y: cp.y });
+                }
+                if (expectNotArrVal(cp.x, cp.y - 1, fullGrid, -1) && !checkDuplicateCoord({ x: cp.x, y: cp.y - 1 }, checked)) {
+                    q.push({ x: cp.x, y: cp.y - 1 });
+                }
+                if (expectNotArrVal(cp.x, cp.y + 1, fullGrid, -1) && !checkDuplicateCoord({ x: cp.x, y: cp.y + 1 }, checked)) {
+                    q.push({ x: cp.x, y: cp.y + 1 });
+                }
+            }
+            checked.push(q.shift());
+        }
+    } else {
+        incompleteGrid[x][y] = el;
+    }
+    return incompleteGrid;
+}
