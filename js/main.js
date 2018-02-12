@@ -230,3 +230,16 @@ function restartGame() {
     clearCanvas(app.canvas, app.ctx);
     renderGrid(app.iGrid);
 }
+
+const app = {
+    settings: {
+        rows: 10,
+        columns: 10,
+        bombs: null
+    },
+    fGrid: null,
+    iGrid: null,
+    canvas: null,
+    ctx: null,
+    sizeInput: null,
+};
