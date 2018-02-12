@@ -204,3 +204,8 @@ function handleGenerateButton() {
         notifyUser('Invalid grid size, must be between 3 and 20');
     }
 }
+
+function setEventListeners() {
+    app.generateButton.addEventListener('click', handleGenerateButton);
+    app.canvas.addEventListener('click', handleBlockClick);
+}
