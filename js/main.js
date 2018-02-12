@@ -75,3 +75,12 @@ function initGrid(rows, columns, nBombs) {
     const d = labelNonBombCells(c);
     return d;
 }
+
+// Check if a value exists in a 2D array at specified x and y coordinates/indices. 
+function expectArrVal(x, y, arr, exp) {
+    if (x >= 0 && x < arr.length && y >= 0 && y < arr[x].length && arr[x][y] === exp) {
+        return true;
+    } else {
+        return false;
+    }
+}
