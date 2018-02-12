@@ -38,3 +38,32 @@ function convertFlatGridToDeep(flatGrid) {
         throw new Error("Flatgrid length has to be a square number.");
     }
 }
+
+// Label non-bomb grid cells based on how many bomb neighbours they have.
+function labelNonBombCells(deepGrid) {
+    const labeledGrid = deepGrid.map(arr => arr.slice());
+    const len = labeledGrid.length - 1;
+    let top, right, bottom, left, topright, topleft, bottomright, bottomleft;
+    let directions, neighbouringBombs;
+    for (let i = 0; i <= len; i++) {
+        for (let j = 0; j <= len; j++) {
+            if (labeledGrid[i][j] !== -1) {
+                // console.log(labeledGrid)
+                topleft = (i > 0 && j > 0) ? labeledGrid[i - 1][j - 1] : 0;
+                top = i > 0 ? labeledGrid[i - 1][j] : 0;
+                topright = (i > 0 && j < len) ? labeledGrid[i - 1][j + 1] : 0;
+                right = j < len ? labeledGrid[i][j + 1] : 0;
+                bottomright = (i < len && j < len) ? labeledGrid[i + 1][j + 1] : 0;
+                bottom = i < len ? labeledGrid[i + 1][j] : 0;
+                bottomleft = (i < len && j > 0) ? labeledGrid[i + 1][j - 1] : 0;
+                left = j > 0 ? labeledGrid[i][j - 1] : 0;
+
+                directions = [];
+                directions.push(topleft, top, topright, right, bottomright, bottom, bottomleft, left);
+                neighbouringBombs = directions.filter(x => x === -1).length;
+                labeledGrid[i][j] = neighbouringBombs;
+            }
+        }
+    }
+    return labeledGrid;
+}
