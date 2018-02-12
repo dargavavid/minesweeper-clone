@@ -140,3 +140,7 @@ function reveal(x, y, incompleteGrid, fullGrid) {
 function calcBombs(r, c) {
     return Math.floor(r * c * 0.16);
 }
+
+function clearCanvas(canvas, ctx) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
