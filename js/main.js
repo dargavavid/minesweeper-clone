@@ -99,6 +99,7 @@ function checkDuplicateCoord(el, arr) {
     return JSON.stringify(arr).includes(JSON.stringify(el));
 }
 
+// Reveal cells based on value, zeros get reveal until neighbouring cells are not zeros.
 function reveal(x, y, incompleteGrid, fullGrid) {
     let el = fullGrid[x][y];
     if (el === incompleteGrid[x][y] || x < 0 || y < 0) {
@@ -133,4 +134,9 @@ function reveal(x, y, incompleteGrid, fullGrid) {
         incompleteGrid[x][y] = el;
     }
     return incompleteGrid;
+}
+
+// Calculate number of bombs fitting for a certain number of cells (based on some personal research).
+function calcBombs(r, c) {
+    return Math.floor(r * c * 0.16);
 }
