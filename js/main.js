@@ -172,3 +172,12 @@ function renderGrid(grid) {
         currentY += blockHeight;
     }
 }
+
+function getClickedBlockCoords(e, grid) {
+    const clickedX = e.clientX, clickedY = e.clientY;
+    const r = grid.length, c = grid[0].length;
+    const cWidth = app.canvas.width, cHeight = app.canvas.height;
+    const blockWidth = cWidth / c, blockHeight = cHeight / r;
+    const y = Math.floor(clickedX / blockWidth), x = Math.floor(clickedY / blockHeight);
+    return { x, y };
+}
