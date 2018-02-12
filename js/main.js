@@ -209,3 +209,16 @@ function setEventListeners() {
     app.generateButton.addEventListener('click', handleGenerateButton);
     app.canvas.addEventListener('click', handleBlockClick);
 }
+
+function initGame() {
+    app.settings.bombs = calcBombs(app.settings.rows, app.settings.columns);
+    app.fGrid = initGrid(app.settings.rows, app.settings.columns, app.settings.bombs);
+    app.iGrid = new Array(app.settings.rows).fill(0).map(row => new Array(app.settings.columns).fill('?'));
+    app.canvas = document.querySelector('#game');
+    app.ctx = app.canvas.getContext('2d');
+    app.sizeInput = document.querySelector('#game-settings-size');
+    app.generateButton = document.querySelector('#generate-button');
+    setEventListeners();
+    clearCanvas(app.canvas, app.ctx);
+    renderGrid(app.iGrid);
+}
