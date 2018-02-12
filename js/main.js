@@ -185,3 +185,11 @@ function getClickedBlockCoords(e, grid) {
 function notifyUser(msg) {
     window.alert(msg);
 }
+
+function handleBlockClick(e) {
+    const { x, y } = getClickedBlockCoords(e, app.fGrid);
+    console.log(y, x);
+    app.iGrid = reveal(x, y, app.iGrid, app.fGrid);
+    clearCanvas(app.canvas, app.ctx);
+    renderGrid(app.iGrid);
+}
