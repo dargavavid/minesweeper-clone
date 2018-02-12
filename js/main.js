@@ -18,3 +18,9 @@ function shuffle(arr) {
     }
     return shuffled;
 }
+
+// Fill array with specified number of bombs (-1), then shuffle them to random places
+function setBombsRandomly(flatGrid, nBombs) {
+    const gridWithBombs = flatGrid.map((x, i) => i < nBombs ? -1 : x);
+    return shuffle(gridWithBombs);
+}
