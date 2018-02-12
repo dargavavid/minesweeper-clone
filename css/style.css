@@ -1,0 +1,29 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+#game {
+    background-color: antiquewhite;
+}
+
+#game-settings {
+    display: flex;
+    flex-wrap: wrap;
+    width: 500px;
+    margin-top: 25px;
+}
+
+.game-settings-section {
+    width: 75%;
+    text-align: center;
+}
+
+#generate-button {
+    width: 25%;
+}
