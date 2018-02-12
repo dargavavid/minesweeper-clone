@@ -93,3 +93,8 @@ function expectNotArrVal(x, y, arr, exp) {
         return false;
     }
 }
+
+// Check if object has duplicates in array.
+function checkDuplicateCoord(el, arr) {
+    return JSON.stringify(arr).includes(JSON.stringify(el));
+}
