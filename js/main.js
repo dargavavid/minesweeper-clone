@@ -7,3 +7,14 @@ function range(a, b) {
 function makeFlatGrid(rows, columns) {
     return new Array(rows * columns).fill(0);
 }
+
+// Shuffle array based on Fisher-Yates shuffling algorithm
+function shuffle(arr) {
+    const shuffled = [...arr];
+    let randIndex;
+    for (let i = arr.length - 1; i >= 0; i--) {
+        randIndex = Math.floor((Math.random() * i));
+        [shuffled[i], shuffled[randIndex]] = [shuffled[randIndex], shuffled[i]];
+    }
+    return shuffled;
+}
