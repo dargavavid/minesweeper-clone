@@ -99,7 +99,7 @@ function checkDuplicateCoord(el, arr) {
     return JSON.stringify(arr).includes(JSON.stringify(el));
 }
 
-// Reveal cells based on value, zeros get reveal until neighbouring cells are not zeros.
+// Reveal cells based on value, zeros get revealed until neighbouring cells are not zeros.
 function reveal(x, y, incompleteGrid, fullGrid) {
     let el = fullGrid[x][y];
     if (el === incompleteGrid[x][y] || x < 0 || y < 0) {
@@ -188,10 +188,11 @@ function notifyUser(msg) {
 
 function handleBlockClick(e) {
     const { x, y } = getClickedBlockCoords(e, app.fGrid);
-    console.log(y, x);
     app.iGrid = reveal(x, y, app.iGrid, app.fGrid);
+    app.lastClicked = app.fGrid[x][y];
     clearCanvas(app.canvas, app.ctx);
     renderGrid(app.iGrid);
+    checkGameOver();
 }
 
 function handleGenerateButton() {
@@ -231,6 +232,14 @@ function restartGame() {
     renderGrid(app.iGrid);
 }
 
+function checkGameOver() {
+    if (app.lastClicked === -1) {
+        //game over
+        window.alert('BOOM!!!');
+        restartGame();
+    }
+}
+
 const app = {
     settings: {
         rows: 10,
@@ -242,6 +251,7 @@ const app = {
     canvas: null,
     ctx: null,
     sizeInput: null,
+    lastClicked: null
 };
 
 initGame();
